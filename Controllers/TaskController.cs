@@ -50,4 +50,15 @@ public class TaskController : ControllerBase
         }
         throw new Exception("Failed to add list!");
     }
+
+    [HttpDelete("DeleteTask")]
+    public IActionResult DeleteTask(int taskId)
+    {
+        string sql = $"DELETE FROM Task WHERE Id = {taskId}";
+        if (_dapper.ExecuteSql(sql))
+        {
+            return Ok();
+        }
+        throw new Exception("Failed to delete task!");
+    }
 }

@@ -50,4 +50,15 @@ public class ListController : ControllerBase
         }
         throw new Exception("Failed to add list!");
     }
+
+    [HttpDelete("DeleteList")]
+    public IActionResult DeleteList(int listId)
+    {
+        string sql = $"DELETE FROM List WHERE Id = {listId}";
+        if (_dapper.ExecuteSql(sql))
+        {
+            return Ok();
+        }
+        throw new Exception("Failed to delete list!");
+    }
 }
